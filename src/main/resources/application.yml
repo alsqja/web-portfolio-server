@@ -23,3 +23,8 @@ kafka:
   producer:
     key-serializer: org.apache.kafka.common.serialization.StringSerializer
     value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiry-millis: 7200000
+  refresh-expiry-millis: 864000000
