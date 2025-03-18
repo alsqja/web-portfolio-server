@@ -16,6 +16,7 @@ import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -51,5 +52,10 @@ public class PortfolioService {
         Portfolio portfolio = new Portfolio(user, fileUrl, fileName);
 
         return new PortfolioResDto(portfolioRepository.save(portfolio));
+    }
+
+    public List<PortfolioResDto> findByUserId(String id) {
+
+        return portfolioRepository.findByUserId(id).stream().map(PortfolioResDto::new).toList();
     }
 }
