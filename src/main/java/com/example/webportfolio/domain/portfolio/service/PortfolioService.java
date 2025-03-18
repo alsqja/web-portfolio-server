@@ -58,4 +58,13 @@ public class PortfolioService {
 
         return portfolioRepository.findByUserId(id).stream().map(PortfolioResDto::new).toList();
     }
+
+    public void deleteById(String id, User user) {
+
+        Portfolio portfolio = portfolioRepository.findByIdAndUser(id, user).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Portfolio not found"));
+
+        s3Client.deleteObject(builder -> builder.bucket(bucketName).key(portfolio.getFileName()));
+
+        portfolioRepository.delete(portfolio);
+    }
 }
