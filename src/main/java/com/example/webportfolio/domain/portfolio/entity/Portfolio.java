@@ -32,4 +32,10 @@ public class Portfolio extends BaseEntity {
 
     @Column(nullable = false)
     private String fileName;
+
+    public Portfolio(User user, String fileUrl, String fileName) {
+        this.user = user;
+        this.fileUrl = fileUrl;
+        this.fileName = fileName;
+    }
 }

@@ -1,4 +1,9 @@
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 100MB
   datasource:
     url: jdbc:postgresql://localhost:5432/portfolio
     username: admin
@@ -28,3 +33,13 @@ jwt:
   secret: ${JWT_SECRET}
   expiry-millis: 7200000
   refresh-expiry-millis: 864000000
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket-name: ${S3_BUCKET_NAME}
