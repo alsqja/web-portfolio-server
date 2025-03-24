@@ -56,7 +56,7 @@ public class PortfolioService {
 
     public List<PortfolioResDto> findByUserId(String id) {
 
-        return portfolioRepository.findByUserId(id).stream().map(PortfolioResDto::new).toList();
+        return portfolioRepository.findByUserIdOrderByCreatedAtDesc(id).stream().map(PortfolioResDto::new).toList();
     }
 
     public void deleteById(String id, User user) {
