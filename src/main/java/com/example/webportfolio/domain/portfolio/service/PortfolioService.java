@@ -42,6 +42,8 @@ public class PortfolioService {
             s3Client.putObject(PutObjectRequest.builder()
                             .bucket(bucketName)
                             .key(fileName)
+                            .contentDisposition("inline")
+                            .contentType("application/pdf")
                             .build(),
                     RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
         } catch (Exception e) {
@@ -66,5 +68,12 @@ public class PortfolioService {
         s3Client.deleteObject(builder -> builder.bucket(bucketName).key(portfolio.getFileName()));
 
         portfolioRepository.delete(portfolio);
+    }
+
+    public PortfolioResDto findPortfolioById(String id) {
+
+        Portfolio portfolio = portfolioRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Portfolio not found"));
+
+        return new PortfolioResDto(portfolio);
     }
 }
