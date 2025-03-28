@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Document(collation = "activity_logs")
+@Document(collection = "activity_logs")
 public class ActivityLog {
 
     @Id
@@ -22,6 +22,10 @@ public class ActivityLog {
     public ActivityLog(String visitId, String portfolioId, List<PageLog> pageLogs) {
         this.visitId = visitId;
         this.portfolioId = portfolioId;
+        this.pageLogs = pageLogs;
+    }
+
+    public void updatePageLogs(List<PageLog> pageLogs) {
         this.pageLogs = pageLogs;
     }
 }
