@@ -17,6 +17,12 @@ public class ActivityLogDto {
     private String portfolioId;
     private List<PageLog> pageLogs;
 
+    public ActivityLogDto(ActivityLog activityLog) {
+        this.visitId = activityLog.getVisitId();
+        this.portfolioId = activityLog.getPortfolioId();
+        this.pageLogs = activityLog.getPageLogs();
+    }
+
     public ActivityLog toEntity() {
         return new ActivityLog(visitId, portfolioId, pageLogs);
     }
